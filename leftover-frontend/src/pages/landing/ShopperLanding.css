@@ -1,0 +1,9 @@
+.ShopperBase {
+    background-image: url('https://food.ubc.ca/wp-content/uploads/2020/02/Save-Money-On-Groceries_UBC-Food-Services.jpg');
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 auto;
+    height: 100vh;
+    background-position: center; 
+    background-size: cover;
+}
