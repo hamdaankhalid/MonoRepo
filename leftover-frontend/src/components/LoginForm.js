@@ -19,9 +19,11 @@ export default function LoginForm(){
           'Content-Type': 'application/x-www-form-urlencoded'
         }})
         .then((response) => {
+            
             auth.login(response.data.type_of, () => {
+                localStorage.auth_token = response.data.token 
                 history.push('/provider/home');
-                // WE ALSO NEED TO SET AUTHORIZATION LATER
+                console.log('To Home Scene')
                 });
         }).catch((error) => {
             console.error(error)

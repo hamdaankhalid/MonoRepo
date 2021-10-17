@@ -1,8 +1,10 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import auth from '../wrappers/auth';
 
 
 export default function NavigationBar(props){
-
+    const handleLogout = () => auth.logout( () => { props.history.push("/")} )
+    console.log(props.logoutGroup);
     return(
         <>
            <Navbar bg="light" expand="lg">
@@ -16,6 +18,12 @@ export default function NavigationBar(props){
                         <Nav.Link key={link.index} href={link.link}>{link.name}</Nav.Link>
                     ))
                     }
+                    
+                    {
+                        (props?.logoutGroup === 'food_bank') && 
+                            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                        
+                    }   
                     
                     
                         

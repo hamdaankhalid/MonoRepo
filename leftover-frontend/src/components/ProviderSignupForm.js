@@ -1,20 +1,9 @@
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
-
 import axios from 'axios';
-/*
-Provider Profile Associated Admin account form :
-    - Name of Provider
-    - Type(Food Bank, Grocery Store, Restaurant)
-    - Address
-    - Email
-    - Phone_num
-    - password
-    (Creates an account, Provider profile, and Provider Employee profilein backend)
-*/
 
-export default function ProviderSignupForm() {
+function ProviderSignupForm() {
   const [validated, setValidated] = useState(false);
   const history = useHistory();
 
@@ -26,16 +15,20 @@ export default function ProviderSignupForm() {
     }
     setValidated(true);
     axios.post(
-      'http://127.0.0.1:3000/provider/',null, {params:{
-        name: form.name.value,
-        type: form.type.value,
-        address: form.street.value,
-        phone: form.phone.value,
-        email: form.email.value,
-        password: form.password.value
-    }},{ headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    } }).then((response) => {
+      'http://127.0.0.1:3000/provider/', null, {
+        params: {
+          name: form.name.value,
+          type: form.type.value,
+          address: form.street.value,
+          phone: form.phone.value,
+          email: form.email.value,
+          password: form.password.value
+        }
+    }, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    }).then((response) => {
       history.push('/login')
     }).catch((error) => {
       console.log("ERROR HAS BEEN SEEN")
@@ -51,25 +44,27 @@ export default function ProviderSignupForm() {
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
         <Row className="mb-3">
-
-          <Form.Group as={Col} md="6" controlId="name">
+  
+           <Form.Group as={Col} md="6" controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control
               required
               type="text"
               placeholder="Name"
             />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
+           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+           
+           </Form.Group>
+          
 
           <Form.Group as={Col} md="4" controlId="type">
             <Form.Label>Type</Form.Label>
-            <Form.Select>
+            <Form.Control as="select">
               <option>Select Type</option>
               <option value="foodBank">Food Bank</option>
               <option value="groceryStore">Grocery Store</option>
               <option value="restaurant">Restaurant</option>
-            </Form.Select>
+            </Form.Control>
           </Form.Group>
 
 
@@ -94,7 +89,8 @@ export default function ProviderSignupForm() {
              </Form.Control.Feedback>
           </Form.Group>
 
-        </Row>
+        </Row> 
+
         <Row className="mb-3">
           <Form.Group as={Col} md="3" controlId="state">
             <Form.Label>State</Form.Label>
@@ -140,15 +136,17 @@ export default function ProviderSignupForm() {
               required
               type="text"
               placeholder="Password"
-              defaultValue=""
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
         </Row>
+
         <Button type="submit">Submit form</Button>
 
       </Form>
     </div>
-  );
+  )
 }
+
+export default ProviderSignupForm;

@@ -24,33 +24,12 @@ export default function ShopperSignupForm() {
   
     return (
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <Row className="mb-3">
-          <Form.Group as={Col} md="4" controlId="validationCustom01">
-            <Form.Label>First name</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="First name"
-              defaultValue=""
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" controlId="validationCustom02">
-            <Form.Label>Last name</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Last name"
-              defaultValue=""
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+          <Form.Group as={Col} md="4" controlId="email">
             <Form.Label>Email</Form.Label>
             <InputGroup hasValidation>
               <Form.Control
                 type="text"
-                placeholder="Username"
+                placeholder="Email"
                 aria-describedby="inputGroupPrepend"
                 required
               />
@@ -59,16 +38,22 @@ export default function ShopperSignupForm() {
               </Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
-          
-        </Row>
+
+          <Form.Group as={Col} md="4" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <InputGroup hasValidation>
+              <Form.Control
+                type="text"
+                placeholder="Password"
+                aria-describedby="inputGroupPrepend"
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                Please enter your password.
+              </Form.Control.Feedback>
+            </InputGroup>
+          </Form.Group>
         
-        <Form.Group className="mb-3">
-          <Form.Check
-            required
-            label="Agree to terms and conditions"
-            feedback="You must agree before submitting."
-          />
-        </Form.Group>
         <Button type="submit">Submit form</Button>
       </Form>
     );

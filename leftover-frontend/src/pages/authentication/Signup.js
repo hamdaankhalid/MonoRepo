@@ -1,8 +1,8 @@
 import { useReducer } from 'react';
 import NavigationBar from '../../components/NavigationBar';
 import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-import ProviderSignupForm from '../../components/ProviderSignupForm.js';
-import ShopperSignupForm from '../../components/ShopperSignupForm.js';
+import ProviderSignupForm from '../../components/ProviderSignupForm';
+import ShopperSignupForm from '../../components/ShopperSignupForm';
 
 
 // Can signup as a Shopper or as a provider

@@ -16,7 +16,11 @@ class Auth {
         this.authorizationGroup = authorizationGroup;
         localStorage.authorizationGroup = authorizationGroup;
         console.log(`authorization group is ${this.authorizationGroup} && localstorage is ${localStorage.authorizationGroup}`)
-        cb();
+        setTimeout(
+            cb(),
+            1000
+        );
+        
     }
 
     logout(cb){
@@ -24,6 +28,7 @@ class Auth {
         localStorage.isAuthenticated = false;
         this.authorizationGroup = null;
         localStorage.authorizationGroup = null;
+        localStorage.auth_token = null;
         cb();
     }
 

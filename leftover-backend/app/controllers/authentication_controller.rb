@@ -1,14 +1,15 @@
 class AuthenticationController < ApplicationController
     class AuthenticationError < StandardError; end
     skip_before_action :verify_authenticity_token
+
     rescue_from ActionController::ParameterMissing, with: :parameter_missing
     rescue_from AuthenticationError, with: :handle_unauthenticated
 
     before_action :authenticate_user, only:[ :identity ]
 
     def create
-        p params.require(:password).inspect
         account = Account.find_by(email: params.require(:email))
+        p account
         if account
             raise AuthenticationError unless account.authenticate(params.require(:password))
             token = AuthenticationTokenService.call(account.id)
@@ -20,7 +21,7 @@ class AuthenticationController < ApplicationController
     end
 
     def identity
-        render json: { type_of: @account.type_of }
+        render json: { type_of: @account.type_of }, status: :ok
     end
 
     private

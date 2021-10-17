@@ -13,7 +13,8 @@ import ProviderHome from './pages/provider/ProviderHome';
 import { ProtectedRoute } from './wrappers/ProtectedRoute'
 import ProviderHistory from './pages/provider/ProviderHistory';
 import ProviderProfile from './pages/provider/ProviderProfile';
-
+import ShopperHome from './pages/shopper/ShopperHome';
+import ShopperProviderPublished from './pages/shopper/ShopperProviderPublished';
 
 function App() {
 
@@ -24,26 +25,18 @@ function App() {
       <Router>
         <Switch>
 
-          <Route exact path="/">
-            <ShopperLanding />
-          </Route>
-
-          <Route exact path="/provider">
-            <ProviderLanding />
-          </Route>
+          <Route exact path="/" component={ShopperLanding} />
+          <Route exact path="/provider" component={ProviderLanding} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
 
           <ProtectedRoute exact path="/provider/home" authorizationGroup={'food_bank'} component={ProviderHome} />
           <ProtectedRoute exact path="/provider/profile" authorizationGroup={'food_bank'} component={ ProviderProfile } />
           <ProtectedRoute exact path="/provider/history" authorizationGroup={'food_bank'} component={ ProviderHistory } />
-        
 
-          <Route path="/signup">
-            <Signup />
-          </Route>
-
-          <Route path="/login">
-            <Login />
-          </Route>
+          <Route path="/shopper/home" component={ShopperHome} />
+          <Route path="/shopper/provider/:id/items" component={ShopperProviderPublished} />
+            
 
         </Switch>
       </Router>
